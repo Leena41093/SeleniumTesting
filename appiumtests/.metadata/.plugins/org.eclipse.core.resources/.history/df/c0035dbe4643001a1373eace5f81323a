@@ -1,0 +1,62 @@
+package tests;
+//import Driver
+//import tests.Driver.geckodriver
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+import junit.framework.Assert;
+
+public class addHomework extends AllSetUp {
+//	WebDriver driver; 
+	
+//	@SuppressWarnings("deprecation")
+	@Test
+	public void createHomework() throws InterruptedException{
+//		this.driver =driver;
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    WebElement subjectCard = driver.findElement(By.className("cardgrid--item"));
+	    subjectCard.click();
+	    WebElement hwCard = driver.findElement(By.className("c-card-dtl__body"));
+	    hwCard.click();
+	    WebElement addHomework = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div/div[2]/div/div[2]/button"));
+	    addHomework.click();
+	    WebElement createHomework =driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div/div[1]/div[1]/button"));
+	    createHomework.click();
+	    WebElement element1 = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div/div[2]"));
+	    JavascriptExecutor jse = (JavascriptExecutor)driver;
+//	    jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+//	    ((JavascriptExecutor)driver).executeScript("window.scrollTo(0,document.body.scr‌​ollHeight);");
+	    jse.executeScript("arguments[0].scrollIntoView(true);",element1);
+	    Thread.sleep(5000);
+	    WebElement title = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[1]/div[1]/input"));
+	    title.sendKeys("TestHw");
+	    WebElement dueDate = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[2]/div/div[1]/div/div/div[1]/div/input"));
+	    dueDate.clear();
+//	   / dueDate.sendKeys("09252020");
+	    WebElement folder = driver.findElement(By.xpath	("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[1]/div[2]/div[2]/button"));
+	    
+	    String s1 = folder.getText();
+	    if(s1 != "Chapter 1")
+	    {
+	    	WebElement createFlder = driver.findElement(By.className("link--btn pull-right"));
+	    	createFlder.click();
+	    }
+	    Assert.assertEquals(s1,"Chapter 1");
+//		Assert.assertEquals(hwdetail.getText(), " Homework");
+
+
+//	    (s1, "Chapter 1"); 
+	    System.out.println(s1);
+	    
+	    
+	}
+	
+	
+
+}

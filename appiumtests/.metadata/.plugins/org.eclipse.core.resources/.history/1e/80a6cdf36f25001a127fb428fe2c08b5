@@ -1,0 +1,201 @@
+package tests;
+
+import static org.testng.Assert.assertTrue;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.touch.TouchActions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+@Test(priority=4)
+public class dashBoard extends LoginTest {
+	public void batchDetailTest() throws InterruptedException{
+	WebDriverWait wait=new WebDriverWait(driver, 20);
+
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+		
+	MobileElement subjectCard = driver.findElement(By.xpath("(//android.view.ViewGroup[@content-desc='batch0'])"));
+	subjectCard.click();
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+
+	MobileElement content = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='actioncontent']"));
+	content.click();
+	MobileElement homeworkCard = driver.findElementByAccessibilityId("homework");
+	homeworkCard.click();
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
+//	new UiScrollable(new UiSelector().here_specify_element_that_need_to_be_scrolled)...
+//    MobileElement m1 = driver.findElement(By.xpath("//android.view.ViewGroup"));
+	MobileElement yu = driver.findElement(By.id("com.cleverground_student_app:id/action_bar_root"));
+	
+	Boolean foundResult = false;
+	while (!foundResult)
+{
+		
+	
+	List<MobileElement> a= (List<MobileElement>) yu.findElements(By.xpath("//android.view.ViewGroup"));
+	
+//    int tr =a.size();
+//    System.out.println(tr);
+    int size=0;
+    size=size + a.size();
+    boolean found = false;
+    
+    for(int i=0;i<=a.size();i++)
+    {
+//    	MobileElement re = a;
+//    	System.out.println(re);
+//    	List<MobileElement> oneTab = yu.findElements(By.xpath("((//android.view.ViewGroup[@content-desc='checkedhw'])"));
+//    	int n = oneTab.size();
+//    	System.out.println("n  "+n);
+////    	@FindBy(how=How.XPATH,using=("//android.widget.TextView 115[contains(.,‘Family Profile’)]"))
+//
+//
+////    	
+//    	for(int j=0;j<=n;j++)
+//    	{
+//////    		System.out.println(oneTab.get(i));
+            a.get(i).findElement(By.className("android.view.ViewGroup")).click();
+//    	    if(oneTab.get(i).getAttribute("content-desc")).equals("unchecked");
+//    		MobileElement filepdf = yu.findElement(By.xpath("//android.view.ViewGroup[@content-desc='hwfiles']/android.view.ViewGroup"));
+////    		filepdf.click(;
+//    		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);		
+//
+////    		MobileElement ispdfopened = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[2]/android.view.View"));
+//    	   
+////    		Assert.assertEquals(ispdfopened.isDisplayed(),true);
+//    		System.out.println("File Opened");
+////    		MobileElement backtohwdetail = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='Homework : Hytu']/android.view.ViewGroup/android.widget.ImageView"));
+//////    		backtohwdetail.click();
+//    		MobileElement hwdetail = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='activehomeworkTab']/android.widget.TextView"));
+//    		Assert.assertEquals(hwdetail.getText(), " Homework");
+//    		MobileElement addcomment = driver.findElementByAccessibilityId("discussioninput");
+//    		addcomment.sendKeys("This is Comment");
+//    		MobileElement addcommentbutton = driver.findElementByAccessibilityId("discussionBtn");
+//    		addcommentbutton.click();
+//    		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);		
+//    		MobileElement mm = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView"));
+//
+//    		List<MobileElement> commentText = mm.findElements(By.className("android.widget.ScrollView"));
+//    		int sizeofc = commentText.size();
+//    		
+////    		for(int k=0;k<=sizeofc;k++){
+//    		System.out.println(sizeofc);
+//    				
+//    		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);		
+//
+//    		Assert.assertEquals(commentText.get(3).getText(),"This is Comment");
+//    		System.out.println("Add Comment Working");
+//    		MobileElement upvotecomment =  driver.findElementByAccessibilityId("upvote");
+//    		upvotecomment.click();
+//    		MobileElement downvotecomment =  driver.findElementByAccessibilityId("downvote");
+//    		downvotecomment.click();
+//    		MobileElement replytocomment =driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='reply']/android.widget.TextView"));
+//    		replytocomment.click();
+//    		MobileElement typereply = driver.findElementByAccessibilityId("typecomment");
+//    		typereply.sendKeys("This is Reply");
+//    		MobileElement sendreply = driver.findElementByAccessibilityId("sendcomment");
+//    		sendreply.click();
+//    		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+//
+//    		MobileElement checkreply = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.widget.TextView[6]"));
+//    		Assert.assertEquals(checkreply.getText(), "This is Reply");
+//    		MobileElement deletecomment = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='replydelete0']/android.widget.TextView"));
+//    		deletecomment.click();
+//    		MobileElement isdeleted = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.widget.TextView[4]"));
+//    		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+//
+//    		if(isdeleted.isDisplayed()==true)
+//    		{
+//    			System.out.println("Comment deletion not working");
+//    		}
+//    		
+//    		MobileElement homeworktab = driver.findElementByAccessibilityId("inactivehomeworktab");
+//    		homeworktab.click();
+//    		MobileElement viewsubmittedfile = driver.findElementByAccessibilityId("ViewHomework");
+//    		viewsubmittedfile.click();
+////    		backtohwdetail.click();
+//    		MobileElement backtolist = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView"));
+//    		backtolist.click();
+//
+//    		
+//    		
+//    		
+//    		break;
+//    	}
+//     break;	
+//    }
+    
+    ////aboce this
+//    		Assert.assertEquals(false, expected);
+    		
+    	
+//    	System.out.println(n);
+//    	System.out.println("Size of checked");
+//    	if(oneTab != null){
+////    		oneTab.click();
+////    		break;
+//    	}
+    
+//    System.out.println("Size");
+//    System.out.println(+tr);
+//    System.out.println("Content Desc:  "+a);
+
+
+//	MobileElement m1 = ((AndroidDriver) driver).findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text('English'));");
+//	MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator(
+//			"new UiScrollable(new UiSelector().resourceId(\"android:id/content"));
+//////	String color = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='uncheckedhw']/android.widget.TextView[6]")).getCssValue("color");
+//	MobileElement homeworkstatus = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='uncheckedhw']/android.widget.TextView[6]"));
+//    MobileElement hhs =driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup"));
+//
+//
+//	List<MobileElement> listhw = hhs.findElements(By.xpath("(//android.view.ViewGroup[@content-desc='checkedhw'])"));
+//	TouchActions action = new TouchActions(driver);
+//	action.scroll(hhs, 10, 100);
+//	action.perform();
+//	int n = listhw.size();
+//	System.out.println("Size of list  "+n);
+//	for(int i=0;i<=n;i++)
+//	{
+////	listhw.get(i).click();
+//	System.out.println(listhw.get(i));
+//	Thread.sleep(3000);
+//	}
+    
+	//	MobileElement hh = driver.findElement(By.xpath("//android.view.ViewGroup(content-desc(),\\uncheckedhw.\')]"));
+//	System.out.println(hh.isDisplayed());
+
+////	String arrColor = colorString .split("#");
+////	assertTrue(arrColor).equals("222"));
+//    String status = homeworkstatus.getText();
+//    if (status == "Submitted")
+////    	MobileElement 
+//    {
+////      homeworkstatus.click();
+//      
+//      
+//    }
+//    else if(status == "Checked")
+//    {
+//    	
+//    }
+//    else
+//    {
+//    	
+//    }
+//	System.out.println("Color" + status);
+    	}
+	
+    }
+
+}
+}

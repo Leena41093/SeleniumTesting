@@ -1,0 +1,48 @@
+package tests;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+
+public class appData {
+     AppiumDriver<MobileElement> driver;
+
+	@BeforeTest
+	public void setUp() throws MalformedURLException
+	{
+		 DesiredCapabilities cap =new DesiredCapabilities();
+		 cap.setCapability("deviceName","Redmi Note 7");
+		 cap.setCapability("udid","4befc4c2");
+		 cap.setCapability("platformName","Android");
+		 cap.setCapability("platformVersion","10");
+		 cap.setCapability("appPackage","com.cleverground_student_app");
+		 cap.setCapability("appActivity","com.cleverground_student_app.MainActivity");
+		 cap.setCapability("automationName","UiAutomator2");
+		 cap.setCapability("newCommandTimeout", 120);
+	     URL url = new URL("http://127.0.0.1:4723/wd/hub");
+		 driver =new AppiumDriver<MobileElement>(url,cap);
+
+
+	}
+	
+	@AfterSuite
+	public void tearDown()
+	{
+		driver.close();
+		driver.quit();
+	}
+
+}

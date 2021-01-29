@@ -1,0 +1,117 @@
+package tests;
+//import Driver
+//import tests.Driver.geckodriver
+
+import java.util.List;
+//import java.awt.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+import junit.framework.Assert;
+
+public class addHomework extends AllSetUp {
+
+	@Test
+	public void createHomework() throws InterruptedException{
+
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		WebDriverWait wait=new WebDriverWait(driver, 30);
+
+	    WebElement subjectCard = driver.findElement(By.className("cardgrid--item"));
+	    subjectCard.click();
+	   
+	    WebElement hwCard = driver.findElement(By.className("c-card-dtl__body"));
+	    hwCard.click();
+	   
+	    WebElement addHwButton = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div/div[2]/div/div[2]/button"));
+	    addHwButton.click();
+	    
+	    WebElement createHwButton =driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div/div[1]/div[1]/button"));
+	    createHwButton.click();
+	   
+	    WebElement element1 = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div/div[2]"));
+//	    JavascriptExecutor jse = (JavascriptExecutor)driver;
+////	    jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+////	    ((JavascriptExecutor)driver).executeScript("window.scrollTo(0,document.body.scr‌​ollHeight);");
+//	    jse.executeScript("arguments[0].scrollIntoView(true);",element1);
+//	    Thread.sleep(5000);
+	    WebElement Hwtitle = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[1]/div[1]/input"));
+	    
+	    Hwtitle.sendKeys("TestHw");
+	  
+	    WebElement HwdueDate = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[2]/div/div[1]/div/div/div[1]/div/input"));
+	    HwdueDate.clear();
+//	   / dueDate.sendKeys("09252020");
+	    WebElement folderName = driver.findElement(By.xpath	("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[1]/div[2]/div[2]/button"));
+	    
+	    String s1 = folderName.getText();
+	   
+	    System.out.println(s1);
+	   
+	    Assert.assertEquals(s1,"Chapter 1");
+
+	    WebElement createFlder = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[1]/div[2]/div[1]/button"));
+    	createFlder.click(); 
+    	
+    	WebElement createFolder = driver.findElement(By.id("folderName"));
+    	createFolder.sendKeys("Chapter 6");
+    	
+    	WebElement createFolderButton = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[4]/div/div/div[3]/div/button[2]"));
+    	createFolderButton.click();
+    	
+    	String s2= folderName.getText();
+	   
+    	System.out.println(s1);
+	   
+    	Assert.assertEquals(s1,"Chapter 1");
+	  
+    	WebElement Hwmarks = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[2]/div/div[2]/input"));
+	    Hwmarks.clear();
+	    Hwmarks.sendKeys("10");
+	    
+	    WebElement hwPdfFile = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[2]/div/div[2]/div/div[1]/button/input"));
+//	    hwfile.click();
+	    hwPdfFile.sendKeys("/home/buzzybrains/Downloads/TestData/gre_research_validity_data.pdf");
+
+//    	WebElement assignHw = driver.findElement(By.)
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,-250)", "");
+
+    	WebElement assignHwButton = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("button[class*='c-btn prime']"))));
+    	assignHwButton.click();
+    	
+    	WebElement searchHw = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div/div[3]/div[1]/div/input"))));
+    	searchHw.sendKeys("TestHW");
+    	
+        WebElement searchResult = driver.findElement(By.className("c-table"));
+        
+        List<WebElement> resultList = searchResult.findElements(By.className("c-bold"));
+        int hwListSize = resultList.size();
+        System.out.println(hwListSize);
+//        for(int i=0;i<=hwListSize;i++){T
+//        	WebElement resultHwTitle = resultList.get(1);
+//        	String ter = resultHwTitle.getText();
+//        	System.out.println(ter);
+//        	
+        			
+//        }
+//	    Assert.assertEquals(s1,"Chapter 1");
+//		Assert.assertEquals(hwdetat\il.getText(), " Homework");
+
+
+//	    (s1, "Chapter 1"); 
+//	    System.out.println(s1);
+	    
+	    
+//	    }
+	
+	}
+}
+

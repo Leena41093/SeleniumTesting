@@ -1,0 +1,56 @@
+package tests;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Properties;
+
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+
+public class appData {
+   static  AppiumDriver<MobileElement> driver;
+     Properties prop;
+     
+
+@BeforeTest
+public void setUp() throws IOException
+	{
+	     prop = new Properties();
+	     InputStream input = new FileInputStream("/home/buzzybrains/cleverground-mobile_automation/src/test/java/tests/config.properties");
+	     prop.load(input);
+	     
+		 DesiredCapabilities cap =new DesiredCapabilities();
+		 cap.setCapability("deviceName",prop.getProperty("deviceName"));
+		 cap.setCapability("udid",prop.getProperty("udid"));
+//		 cap.setCapability("deviceName","Galaxy J2");
+//		 cap.setCapability("udid","42001118c4d11361");
+		 cap.setCapability("platformName",prop.getProperty("platformName"));
+		 cap.setCapability("platformVersion",prop.getProperty("platformVersion"));
+		 cap.setCapability("appPackage",prop.getProperty("appPackage"));
+		 cap.setCapability("appActivity",prop.getProperty("appActivity"));
+		 cap.setCapability("automationName",prop.getProperty("automationName"));
+		 cap.setCapability("newCommandTimeout", 120);
+	     URL url = new URL("http://127.0.0.1:4723/wd/hub");
+		 driver =new AppiumDriver<MobileElement>(url,cap);
+		 System.out.println("My First Method Executed..........");
+
+
+	}
+	
+//	@AfterSuite
+//	public void tearDown()
+//	{
+//		driver.close();
+//		driver.quit();
+//	}
+
+}

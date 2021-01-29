@@ -1,0 +1,161 @@
+package tests;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
+
+import io.appium.java_client.MobileElement;
+
+public class LoginTest extends appData {
+	
+	@Test(priority=1)
+	public void appLaunch() throws Exception
+	{
+		WebDriverWait wait=new WebDriverWait(driver, 10);
+		
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
+		
+    	MobileElement splashscreen = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView[1]"));
+		boolean isVisible = splashscreen.isDisplayed();
+		Assert.assertEquals(isVisible, true);
+		
+		MobileElement splashlogo = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView[2]"));
+		boolean isviewable = splashlogo.isDisplayed();
+		Assert.assertEquals(isviewable,true );
+		
+		
+		MobileElement loginPageImage = driver.findElement(By.className("android.widget.ImageView"));
+		boolean isdisplayed = loginPageImage.isDisplayed();
+		Assert.assertEquals(isdisplayed, true);
+		
+		MobileElement appslogan = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView[2]")));
+		Assert.assertEquals(appslogan.getText(),"Organised Learning can be fun!");
+		
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);		
+		MobileElement loginId =driver.findElementByAccessibilityId("email");
+//		loginId.clear();
+		
+//	    loginId.sendKeys("arun12@gmail.com");
+	    MobileElement password = driver.findElementByAccessibilityId("password");
+//	    password.clear();
+	    
+	    MobileElement loginClick = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='login']"));
+	    loginClick.click();
+	    
+	    MobileElement getError = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView"));
+	    Assert.assertEquals(getError.getText(),"Enter Username and Password");
+//		MobileElement loginId =driver.findElement(By.className("android.widget.EditText"));
+	    loginId.sendKeys("arun12@gmail.com");
+	    
+//	    MobileElement password = driver.findElement(By.xpath("//android.widget.EditText[@content-desc='password']"));
+	    password.sendKeys("1234");	
+	    
+	    System.out.println("Signup page");
+	    List<MobileElement> links=driver.findElements(By.xpath("//android.view.ViewGroup[@content-desc='login']"));
+	    links.get(0).click(); 
+	    MobileElement str = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView"));
+	    System.out.println(str.getText());
+	    Assert.assertEquals(str.getText(),"Invalid Username or Password");
+	}
+	@Test(priority=2)
+	public void forgotPassword() throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		MobileElement forgotmodal1 = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.TextView"));
+		forgotmodal1.click();
+		MobileElement forgotmodal2 = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.EditText"));
+		forgotmodal2.sendKeys("8390977193");
+		MobileElement forgotButton = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[3]"));
+		forgotButton.click();
+//		driver.wait();
+//		List<MobileElement> els =driver.findElements(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[3]"));
+//	    els.get(0).click(); 
+		MobileElement enterOtp = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[3]"));
+		enterOtp.click();
+//		forgotButton.click();
+//		MobileElement errortext = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.TextView"));
+//		
+//		Assert.assertEquals(errortext.getText(),"Enter Otp");
+////		System.out.println("Forgot Password Working");
+////		driver.startActivity
+//		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+
+		MobileElement checkText = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.EditText")));
+//		String s = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.EditText")).getAttribute("placeholder"); 
+
+		String as = checkText.getText();
+//		System.out.println(s);
+		Assert.assertEquals(as," Enter OTP");
+//		if(checkText.getText() =="Enter OTP"){
+//			
+//		}
+//		((Object) driver).startActivity()
+	}
+	@Test(priority=3)
+//			WebDriverWait wait=new WebDriverWait(driver, 10);
+	public void Login()
+	{	
+			MobileElement close = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView"));
+			close.click();
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);		
+			MobileElement loginId =driver.findElementByAccessibilityId("email");
+			loginId.clear();
+			
+		    loginId.sendKeys("arun12@gmail.com");
+		    MobileElement password = driver.findElementByAccessibilityId("password");
+		    password.clear();
+		    
+//		    MobileElement loginClick = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='login']"));
+//		    loginClick.click();
+//		    
+//		    MobileElement getError = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView"));
+//		    Assert.assertEquals(getError.getText(),"Enter Username and Password");
+		    
+		    loginId.sendKeys("arun12@gmail.com");
+		    password.sendKeys("123");	
+		    List<MobileElement> links=driver.findElements(By.xpath("//android.view.ViewGroup[@content-desc='login']"));
+
+		    System.out.println("Signup page");
+		    links.get(0).click(); 
+		    System.out.println("Login Test Passed....");
+		}
+	@AfterTest
+	public void Logout(){
+//		driver.manage().wait();
+	
+
+		MobileElement insti = driver.findElementByAccessibilityId("institute0");
+		if (insti.isDisplayed())
+		{
+		insti.click();
+		}
+		else
+			System.out.println("Element is not loaded yet");
+//		driver.manage().wait();
+
+		MobileElement branch = driver.findElementByAccessibilityId("branch0");
+		
+		if (branch.isDisplayed())
+		{
+			branch.click();
+		}
+		else
+			System.out.println("Page is not loaded yet");
+		MobileElement sidebar = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView"));
+		sidebar.click();
+		MobileElement logout = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[7]/android.widget.TextView"));
+//		logout.click();
+		System.out.println("Logout Test Passed.....");
+	}
+	}
+
+
+
+
+

@@ -1,0 +1,91 @@
+package tests;
+//import Driver
+//import tests.Driver.geckodriver
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+import junit.framework.Assert;
+
+public class addHomework extends AllSetUp {
+//	WebDriver driver; 
+	
+//	@SuppressWarnings("deprecation")
+	@Test
+	public void createHomework() throws InterruptedException{
+//		this.driver =driver;
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		WebDriverWait wait=new WebDriverWait(driver, 20);
+
+	    WebElement subjectCard = driver.findElement(By.className("cardgrid--item"));
+	    subjectCard.click();
+	    WebElement hwCard = driver.findElement(By.className("c-card-dtl__body"));
+	    hwCard.click();
+	    WebElement addHomework = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div/div[2]/div/div[2]/button"));
+	    addHomework.click();
+	    WebElement createHomework =driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div/div[1]/div[1]/button"));
+	    createHomework.click();
+	    WebElement element1 = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div/div[2]"));
+	    JavascriptExecutor jse = (JavascriptExecutor)driver;
+//	    jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+//	    ((JavascriptExecutor)driver).executeScript("window.scrollTo(0,document.body.scr‌​ollHeight);");
+	    jse.executeScript("arguments[0].scrollIntoView(true);",element1);
+	    Thread.sleep(5000);
+	    WebElement title = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[1]/div[1]/input"));
+	    title.sendKeys("TestHw");
+	    WebElement dueDate = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[2]/div/div[1]/div/div/div[1]/div/input"));
+	    dueDate.clear();
+//	   / dueDate.sendKeys("09252020");
+	    WebElement folder = driver.findElement(By.xpath	("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[1]/div[2]/div[2]/button"));
+	    
+	    String s1 = folder.getText();
+	    System.out.println(s1);
+	    Assert.assertEquals(s1,"Chapter 1");
+
+	    WebElement createFlder = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[1]/div[2]/div[1]/button"));
+    	createFlder.click(); 
+    	WebElement folderName = driver.findElement(By.id("folderName"));
+    	folderName.sendKeys("Chapter 6");
+    	WebElement createButton = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[4]/div/div/div[3]/div/button[2]"));
+    	createButton.click();
+    	String s2= folder.getText();
+	    System.out.println(s1);
+	    Assert.assertEquals(s1,"Chapter 1");
+	    WebElement marks = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[1]/div[2]/div[2]/div/div[2]/input"));
+	    marks.clear();
+	    marks.sendKeys("10");
+	    WebElement hwfile = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[3]/div[3]/div/div[2]/div/div[2]/div/div[1]/button/input"));
+//	    hwfile.click();
+        hwfile.sendKeys("/home/buzzybrains/Downloads/TestData/gre_research_validity_data.pdf");
+
+//    	WebElement assignHw = driver.findElement(By.)
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,-250)", "");
+
+    	WebElement assign = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("button[class*='c-btn prime']"))));
+    	assign.click();
+    	
+    	WebElement searchhw = wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("input[class*='form-control']"))));
+    	searchhw.sendKeys("TestHW");
+    	
+
+//	    Assert.assertEquals(s1,"Chapter 1");
+//		Assert.assertEquals(hwdetat\il.getText(), " Homework");
+
+
+//	    (s1, "Chapter 1"); 
+	    System.out.println(s1);
+	    
+	    
+//	    }
+	
+	}
+}
+

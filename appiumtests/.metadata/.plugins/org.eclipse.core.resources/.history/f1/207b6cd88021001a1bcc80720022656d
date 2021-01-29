@@ -1,0 +1,13 @@
+package tests;
+
+import org.openqa.selenium.By;
+
+import io.appium.java_client.MobileElement;
+
+public class dashBoard extends LoginTest {
+	public void batchDetailTest(){
+	MobileElement subjectCard = driver.findElement(By.xpath("(//android.view.ViewGroup[@content-desc='batch0'])[2]/android.view.ViewGroup"));
+	subjectCard.click();
+	MobileElement content = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='actioncontent']"))
+	}
+}

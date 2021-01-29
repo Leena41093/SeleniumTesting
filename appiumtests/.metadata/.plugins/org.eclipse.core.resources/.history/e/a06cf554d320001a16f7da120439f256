@@ -1,0 +1,52 @@
+package tests;
+
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class AllSetUp
+{
+	WebDriver driver = (WebDriver) new ChromeDriver(); 
+    @BeforeTest
+    public void setup()
+    {
+	System.setProperty("webdriver.chrome.driver","/home/buzzybrains/my_workspace/WebAutomation/target/test-classes/tests/Drivers/chromedriver");
+	driver.get("https://cleverground.com/");
+	
+	((WebDriver) driver).manage().window().maximize();	
+    
+	WebElement element = driver.findElement(By.xpath("/html/body/div[2]/div/div/div/nav/div/div/a[4]"));
+    element.click();
+    
+    @SuppressWarnings("unchecked")
+	ArrayList tabs = new ArrayList (((WebDriver) driver).getWindowHandles());
+    System.out.println(tabs.size());
+    
+    ((WebDriver) driver).switchTo().window((String) tabs.get(1));
+ 
+	WebElement email = driver.findElement(By.xpath("//*[@id='email']")); 
+	email.sendKeys("bhushan95@gmail.com");
+	
+	WebElement password = driver.findElement(By.id("password"));
+	password.sendKeys("123");
+	
+	WebElement login =driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[3]/div/div[2]/div[1]/button"));
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    login.click();
+    }
+    
+    @AfterSuite
+	public void tearDown()
+	{
+		driver.close();
+		driver.quit();
+	}
+    
+}

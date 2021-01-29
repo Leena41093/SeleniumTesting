@@ -1,0 +1,22 @@
+package tests;
+
+import org.openqa.selenium.By;
+
+import io.appium.java_client.MobileElement;
+
+public class dashBoard extends LoginTest {
+	public void batchDetailTest(){
+	MobileElement subjectCard = driver.findElement(By.xpath("(//android.view.ViewGroup[@content-desc='batch0'])[2]/android.view.ViewGroup"));
+	subjectCard.click();
+	MobileElement content = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='actioncontent']"));
+	content.click();
+	MobileElement homeworkCard = driver.findElementByAccessibilityId("homework");
+	homeworkCard.click();
+	MobileElement homeworkstatus = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='uncheckedhw']/android.widget.TextView[6]"));
+	String color = homeworkstatus.getCssValue("color");
+	System.out.println("Color" +color);
+	
+	
+	
+	}
+}

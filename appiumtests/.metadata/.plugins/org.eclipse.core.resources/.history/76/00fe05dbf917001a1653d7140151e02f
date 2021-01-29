@@ -1,0 +1,51 @@
+package tests;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
+
+import io.appium.java_client.MobileElement;
+
+public class LoginTest extends appData {
+	
+	@Test
+	public void openStudent() throws Exception
+	{
+//		this.driver = driver;
+		WebDriverWait wait=new WebDriverWait(driver, 10);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);		
+		MobileElement loginId =driver.findElement(By.className("android.widget.EditText"));
+	    loginId.sendKeys("arun12@gmail.com");
+	    MobileElement password = driver.findElement(By.xpath("//android.widget.EditText[@content-desc='password']"));
+	    password.sendKeys("1234");	
+	    
+	    System.out.println("Signup page");
+	    List<MobileElement> links=driver.findElements(By.xpath("//android.view.ViewGroup[@content-desc='login']"));
+	    links.get(0).click(); 
+	    MobileElement str = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView"));
+	    System.out.println(str.getText());
+	    Assert.assertEquals(str.getText(),"Invalid Username or Password");
+	}
+	@AfterTest
+	public void forgotPassword(){
+		WebDriverWait wait = new WebDriverWait(driver,10);
+		MobileElement forgotmodal1 = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.TextView"));
+		forgotmodal1.click();
+		MobileElement forgotmodal2 = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.EditText"));
+		forgotmodal2.sendKeys("8390977193");
+		MobileElement forgotButton = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[3]"));
+		forgotButton.click();
+		MobileElement checkText = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.EditText"));
+		String as = checkText.getText()
+		if(checkText.getText() =="Enter OTP"){
+			System.out.println("Forgot Password Working");
+		}
+		
+	}
+
+}

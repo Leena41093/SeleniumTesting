@@ -1,0 +1,38 @@
+package tests;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebElement;
+import org.testng.annotations.Test;
+
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+
+public class editProfile extends LoginTest {
+@Test(priority = 4)
+public void viewprofile(){
+    List<MobileElement> editviews=driver.findElements(By.className("android.widget.TextView"));
+    editviews.get(2).click();
+    for(int i=0;i<=editviews.size();i++){
+    	System.out.println(editviews.get(i));
+//    	editviews.get(i).click();
+    }
+
+//    MobileElement editviews=driver.findElement(MobileBy.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.TextView"));
+//    editv iews.getAttribute("name");
+//	System.out.println(editviews);
+//    System.out.println(editviews.isDisplayed());
+// e1.click();
+    
+	MobileElement e2 = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.TextView"));
+	e2.click();
+    MobileElement image = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[6]/android.widget.ImageView"));
+    image.click();
+    MobileElement saveImage = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[3]"));
+    saveImage.click();
+    System.out.println(saveImage.getSize());
+   
+	
+}
+}

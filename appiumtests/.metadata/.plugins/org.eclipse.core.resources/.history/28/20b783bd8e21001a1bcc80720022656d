@@ -1,0 +1,41 @@
+package tests;
+
+import static org.testng.Assert.assertTrue;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+import io.appium.java_client.MobileElement;
+@Test(priority=4)
+public class dashBoard extends LoginTest {
+	public void batchDetailTest(){
+	WebDriverWait wait=new WebDriverWait(driver, 20);
+
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+		
+	MobileElement subjectCard = driver.findElement(By.xpath("(//android.view.ViewGroup[@content-desc='batch0'])[2]/android.view.ViewGroup"));
+	subjectCard.click();
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+
+	MobileElement content = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='actioncontent']"));
+	content.click();
+	MobileElement homeworkCard = driver.findElementByAccessibilityId("homework");
+	homeworkCard.click();
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
+	 
+////	String color = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='uncheckedhw']/android.widget.TextView[6]")).getCssValue("color");
+	MobileElement homeworkstatus = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='uncheckedhw']/android.widget.TextView[6]"));
+////	String color = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc='uncheckedhw']/android.widget.TextView[6]")).getAttribute("class");
+////	String arrColor = colorString .split("#");
+////	assertTrue(arrColor).equals("222"));
+   String status = homeworkstatus.getText();
+	System.out.println("Color" +status);
+	
+	
+	
+	}
+}
